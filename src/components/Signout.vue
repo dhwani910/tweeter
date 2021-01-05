@@ -7,8 +7,8 @@ export default {
     name: 'signout-button',
     methods: {
         logout: function(){
-            cookies.remove('session');
-            this.$router.push('/signup')
+            // cookies.remove('session');
+            this.$router.push('/');
         },
     }
 }
