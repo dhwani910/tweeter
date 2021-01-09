@@ -4,7 +4,7 @@
         <input 
             type="text"
             v-model="newComment"/>
-            <button class="button is-info" @click="addComment">Add</button>
+            <button class="button is-info" @click="addComment"><i class="fas fa-comment"></i></button>
         <ul>
           <li v-for="(comment, i) in commentList" :key="i">
               <span>

@@ -1,3 +1,7 @@
+// api key: cwf0BgQG78QiAVS0Km4lkrDo9jRy3asglOkDFQspIIpEP
+// https://www.youtube.com/c/TheNetNinja/videos 
+
+
 <template>
 <div class="container">
      <div>
@@ -16,6 +20,7 @@
    </div> 
     <button @click="loginUser" class="button is-info">Login</button>
     <h5 id="login-status">{{loginStatus}}</h5>
+    
     
 
 </div>
@@ -38,24 +43,27 @@ export default {
         loginUser: function(){
             this.loginStatus = 'Loading..'
             axios.request({
-                method: 'post',
+                method: 'POST',
                 url: 'https://tweeterest.ml/api/login',
                 headers: {
                     'Content-Type': "application/json",
-                    'X-Api-Key': ""
+                    'X-Api-Key': "cwf0BgQG78QiAVS0Km4lkrDo9jRy3asglOkDFQspIIpEP"
                 },
                 data: {
                     email: this.email,
-                    password: this.password
+                    password: this.password,
+                    loginStatus: this.loginStatus,
                 }
             }).then((response) => {
                 this.loginStatus = "Success"
                 cookies.set('session', response.data.loginToken)
+                cookies.set('userId', response.data.userId)
                 this.$router.push("/feed")
 
             }).catch((error) => {
                 console.log(error)
                 this.loginStatus = "Error"
+                alert("Invalid email or password")
 
             })
         },

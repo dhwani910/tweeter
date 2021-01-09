@@ -1,9 +1,7 @@
 <template>
     <div>
-        <h4>{{tweetStatus}}</h4>
-        <textarea v-model="tweetContent"></textarea>
-        <button @click="postTweet()">Post</button>
-        
+        <button class="button is-danger" @click="deleteTweet">Delete</button>
+
     </div>
 </template>
 
@@ -12,44 +10,42 @@
 import axios from "axios"
 import cookies from "vue-cookies"
 export default {
-    name: 'tweet-form',
-    data(){
-        return{
-            tweetContent: '',
-            tweetStatus: "Tweet!",
-            
+    name: 'tweet-delete',
+    props: {
+        tweetId: {
+            type: Number,
+            required: true
         }
+
     },
-    methods: {
-        postTweet: function() {
-            this.tweetStatus = "Tweeting!"
+     methods: {
+        deleteTweet: function() {
+           
             axios.request({
                 url: "https://tweeterest.ml/api/tweets",
                  headers: {
                     'Content-Type': "application/json",
                     'X-Api-Key': "cwf0BgQG78QiAVS0Km4lkrDo9jRy3asglOkDFQspIIpEP"
                 },
-                method: "POST",
+                method: "DELETE",
                 data: {
                     loginToken: cookies.get('session'),
-                    content: this.tweetContent
+                    tweetId: this.tweetId
                 }
             }).then((response) => {
                 console.log(response)
-                this.tweetStatus = "Tweeted!"
+                
             }).catch((error) => {
                 console.log(error)
-                this.tweetStatus = "failed to Tweet!"
+               
 
             })
 
 
         }
     }
-    
 }
 </script>
-
 
 <style scoped>
 

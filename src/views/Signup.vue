@@ -15,11 +15,13 @@
     <input type="text" id="email-input" v-model="email" class="starndard-input">
     <p>Password</p>
     <input type="password" id="password-input" v-model="password" >
+    <p>Bio</p>
+    <input type="text" id="bio-input" v-model="bio">
     <p>birthdate</p>
     <input type="text" id="birthdate-input" v-model="birthdate" placeholder="yyyy-mm-dd"> <br>
   </div>
     <button @click="signupUser" class="button is-info">Sign up</button>
-    <button @click="go">go</button>
+    
     <p>Already have an Account?</p><button @click="signin" class="button is-info">Sign in </button>
     
 
@@ -37,6 +39,7 @@ export default {
             username: '',
             email: '',
             password: '',
+            bio: '',
             birthdate: '',
             
         }
@@ -45,21 +48,23 @@ export default {
         signupUser: function(){
             
             axios.request({
-                method: 'post',
+                method: 'POST',
                 url: 'https://tweeterest.ml/api/users',
                 headers: {
                     'Content-Type': "application/json",
-                    'X-Api-Key': ""
+                    'X-Api-Key': "cwf0BgQG78QiAVS0Km4lkrDo9jRy3asglOkDFQspIIpEP"
                 },
                 data: {
                     email: this.email,
                     username: this.username,
                     password: this.password,
+                    bio: this.bio,
                     birthdate: this.birthdate,
                 }
             }).then((response) => {
                 console.log(response)
                 cookies.set('session', response.data.loginToken)
+                cookies.set('userId', response.data.userId)
                  this.$router.push("/feed")
 
             }).catch((error) => {
@@ -68,9 +73,7 @@ export default {
 
             })
         },
-         go: function(){
-            this.$router.push('/feed')
-        },
+       
         signin: function(){
             this.$router.push('/login')
         }
