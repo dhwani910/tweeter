@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import LoginPage from "../views/Login.vue";
 import SignupPage from "../views/Signup.vue";
 import FeedPage from "../views/Feed.vue";
+import UserProfile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,11 @@ const routes = [
     component: FeedPage
     
   },
+  {
+    path: '/profile',
+    name: 'user-profile',
+    component: UserProfile
+  }
 ];
 
 const router = new VueRouter({

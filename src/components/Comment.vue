@@ -1,71 +1,77 @@
 <template>
-    <div class="comment-container">
-         <h1>Comment</h1>
-        <input 
-            type="text"
-            v-model="newComment"/>
-            <button class="button is-info" @click="addComment"><i class="fas fa-comment"></i></button>
-        <ul>
-          <li v-for="(comment, i) in commentList" :key="i">
-              <span>
-                  {{i + 1}}: {{comment.text}}
-              </span>
-              <button class="button is-danger" @click="deleteComment">Delete</button>
-
-          </li>
-        </ul>
-        <!-- <h4> {{ commentCount }}Comments </h4> -->
-        
-
-        
+    <div>
+       
+       <div  class="comment-container">
+           <comment-create :tweetId="tweetId"></comment-create>
+           <button @click="showComment">show comment</button>
+    
+        </div>
+        <div v-for="comment in comments" :key="comment.comentId">
+        <p>{{comment.content}}</p>
+        <comment-edit  v-if="userId == comment.userId" :commentId="comment.commentId"></comment-edit>
+        <comment-delete v-if="userId = comment.userId" :commentId="comment.commentId"></comment-delete>
+        </div>
 
     </div>
 </template>
 
 
 <script>
+import axios from "axios"
+import cookies from "vue-cookies"
+import CommentCreate from './CommentCreate.vue'
+import CommentDelete from './CommentDelete.vue'
+import CommentEdit from './CommentEdit.vue'
 export default {
     name: 'CommentPage',
-    
-    data() {
+    components: {
+        CommentCreate,
+        CommentDelete,
+        CommentEdit,
+    },
+    props: {
+        tweetId: Number,
+        commentId: Number,
+    },
+    data(){
         return {
-            
-            newComment: '',
-            commentList: [
-                {text:  'Dont think too much'}
-                ]
-            
+            comments: [],
+            userId: cookies.get("userId")
         }
     },
-
-    // computed: {
-    //     commentCount() {
-    //         return this.comments.length;
-    //     }
-    // },
-
+    mounted(){
+        this.showComment();
+    },
     methods: {
-        addComment() {
-            this.commentList.push({
-                text: this.newComment,
-                
-            }),
-            this.newComment = '';
-            
-        },
+        showComment(){
+             axios.request({
+                 url: "https://tweeterest.ml/api/comments",
+                 method: "GET",
+                  headers: {
+                    'Content-Type': "application/json",
+                    'X-Api-Key': "cwf0BgQG78QiAVS0Km4lkrDo9jRy3asglOkDFQspIIpEP"
+                },
+                params: {
+                    tweetId: this.tweetId
+                }
 
-        isEven(n) {
-            if ((n + 1) % 2 == 0) {
-                return true;
-            }
-            return false;
-        },
 
-        deleteComment(i){
-            this.commentList.splice(i, 1)
+                 }).then((response) => {
+                     console.log(response);
+                     this.comments = response.data;
 
+                }).catch((error) => {
+                    console.log(error);
+
+                 })
         }
     }
+    
+   
+
+  
+
+   
 }
 </script>
 

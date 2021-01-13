@@ -1,9 +1,9 @@
 <template>
     <div>
-        <button @click="shouldShow = !shouldShow" class="button is-primary">Edit</button>
+        <button @click="shouldShow = !shouldShow" class="button is-primary"><i class="fas fa-pen">Tweet</i></button>
         <div v-if="shouldShow">
             <textarea v-model="tweetContent"></textarea>
-            <button @click="editTweet()" class="button is-info">Submit</button>
+            <button @click="editTweet()" class="button is-info"><i class="fas fa-check"></i></button>
 
         </div>
     </div>
