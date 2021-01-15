@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="button is-danger" @click="deleteTweet"><i class="fas fa-trash-alt"></i></button>
+        <button class="button is-danger" @click="deleteTweet"><i class="fas fa-trash-alt">Tweet</i></button>
 
     </div>
 </template>

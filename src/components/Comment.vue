@@ -7,10 +7,12 @@
     
         </div>
         <div v-for="comment in comments" :key="comment.comentId">
-        <p>{{comment.content}}</p>
-        <comment-edit  v-if="userId == comment.userId" :commentId="comment.commentId"></comment-edit>
-        <comment-delete v-if="userId = comment.userId" :commentId="comment.commentId"></comment-delete>
+            <p>{{comment.content}}</p>
+            <comment-likes :commentId="comment.commentId"></comment-likes>
+            <comment-edit  v-if="userId == comment.userId" :commentId="comment.commentId"></comment-edit>
+            <comment-delete v-if="userId = comment.userId" :commentId="comment.commentId"></comment-delete>
         </div>
+        
 
     </div>
 </template>
@@ -22,12 +24,14 @@ import cookies from "vue-cookies"
 import CommentCreate from './CommentCreate.vue'
 import CommentDelete from './CommentDelete.vue'
 import CommentEdit from './CommentEdit.vue'
+import CommentLikes from './CommentLikes.vue';
 export default {
     name: 'CommentPage',
     components: {
         CommentCreate,
         CommentDelete,
         CommentEdit,
+        CommentLikes,
     },
     props: {
         tweetId: Number,

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="commentDelete"><i class="fas fa-trash-alt"></i></button>
+        <button @click="commentDelete" class="button is-danger"><i class="fas fa-trash-alt">Comment</i></button>
     </div>
 </template>
 
