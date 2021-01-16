@@ -20,6 +20,7 @@
    </div> 
     <button @click="loginUser" class="button is-info">Login</button>
     <h5 id="login-status">{{loginStatus}}</h5>
+    <p>Create Account ?</p><button class="button is-info" @click="signup">Sign Up</button>
     
     
 
@@ -67,6 +68,9 @@ export default {
 
             })
         },
+        signup(){
+            this.$router.push('/');
+        }
        
     },
     

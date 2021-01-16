@@ -1,17 +1,19 @@
 <template>
     <div>
-       
-       <div  class="comment-container">
-           <comment-create :tweetId="tweetId"></comment-create>
-           <button @click="showComment">show comment</button>
+      <button @click="shouldShow = !shouldShow"><i class="fas fa-comment"></i></button>
+      <div v-if="shouldShow">
+          <div  class="comment-container">
+              <comment-create :tweetId="tweetId"></comment-create>
+              <button @click="showComment">show comment</button>
     
-        </div>
-        <div v-for="comment in comments" :key="comment.comentId">
+          </div>
+          <div v-for="comment in comments" :key="comment.comentId">
             <p>{{comment.content}}</p>
             <comment-likes :commentId="comment.commentId"></comment-likes>
             <comment-edit  v-if="userId == comment.userId" :commentId="comment.commentId"></comment-edit>
             <comment-delete v-if="userId = comment.userId" :commentId="comment.commentId"></comment-delete>
-        </div>
+          </div>
+      </div>
         
 
     </div>
@@ -40,7 +42,8 @@ export default {
     data(){
         return {
             comments: [],
-            userId: cookies.get("userId")
+            userId: cookies.get("userId"),
+            shouldShow: false,
         }
     },
     mounted(){

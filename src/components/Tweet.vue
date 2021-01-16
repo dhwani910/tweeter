@@ -4,10 +4,11 @@
        
         <h3>{{ tweetObject.username}}</h3>
         <p>{{ content}}</p>
-        <h5>{{tweetObject.createdAt}}</h5>
+        <!-- <h5>{{tweetObject.createdAt}}</h5> -->
         <tweet-likes :tweetId="tweetObject.tweetId"></tweet-likes>
-        <tweet-delete v-if="isOwned" :tweetId="tweetObject.tweetId"></tweet-delete>
         <tweet-edit @update-tweet="updateTweet" v-if="isOwned" :tweetId="tweetObject.tweetId"></tweet-edit>
+        <tweet-delete v-if="isOwned" :tweetId="tweetObject.tweetId"></tweet-delete>
+        
     </div>
 </template>
 

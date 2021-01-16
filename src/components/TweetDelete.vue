@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="button is-danger" @click="deleteTweet"><i class="fas fa-trash-alt">Tweet</i></button>
+        <button id="tweet-delete" class="button is-danger" @click="deleteTweet"><i class="fas fa-trash-alt">Tweet</i></button>
 
     </div>
 </template>
@@ -48,5 +48,6 @@ export default {
 </script>
 
 <style scoped>
+
 
 </style>

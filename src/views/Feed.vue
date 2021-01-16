@@ -1,23 +1,27 @@
 <template>
     <div>
-        <h1>feed page</h1>
+        <h1 id="title">Welcome To Twitter!</h1>
+        <p>This is the best place to see what's happening in your world</p>
         
          <tweet-form></tweet-form> 
-        <button @click="getTweets">Refresh Tweets</button>
+        <!-- <button @click="getTweets">Refresh Tweets</button> -->
         <div v-for="tweet in tweets" :key="tweet.tweetId">
             <tweet-card :tweetObject="tweet"></tweet-card>
              <comment-page :tweetId="tweet.tweetId"></comment-page>
+             <div id="seperate"></div>
         </div>
+        
             
            
            
-             <signout-button></signout-button> 
+            
             
            
         <div class="profile">
            <h1>User Profile</h1>
            <button class="button is-info" @click="profile"><i class="fas fa-user"></i></button>
         </div>
+         <signout-button></signout-button> 
     </div>
 </template>
 
@@ -82,6 +86,14 @@ export default {
 </script>
 
 <style scoped>
+#title{
+    background-color: skyblue;
+}
+#seperate{
+    background-color: rgb(190, 228, 243);
+    width: 100%;
+    height: 0.5rem;
+}
 
 
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="comment-container">
-        <button @click="shouldShow = !shouldShow"><i class="fas fa-comment"></i></button>
-        <div v-if="shouldShow">
+        <!-- <button @click="shouldShow = !shouldShow"><i class="fas fa-comment"></i></button> -->
+        <div >
             <textarea type="text" v-model="commentContent"></textarea>
             <button @click="commentCreate"> <i class="fas fa-check"></i></button>
 
@@ -21,7 +21,7 @@ export default {
             userId: cookies.get('userId'),
             commentContent: '',
             
-            shouldShow: false,
+            // shouldShow: false,
         }
     },
     props: {
@@ -46,7 +46,7 @@ export default {
                  }).then((response) => {
                      console.log(response);
                      this.commentContent = "";
-                     alert("successfully commented!!")
+                    //  alert("successfully commented!!")
                      this.shouldShow =  false;
                  }).catch((error) => {
                      console.log(error);

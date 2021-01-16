@@ -1,8 +1,9 @@
 <template>
     <div>
         <h4>{{tweetStatus}}</h4>
-        <textarea v-model="tweetContent"></textarea>
-        <button @click="postTweet()">Post</button>
+        <textarea v-model="tweetContent" placeholder="what's happening???"></textarea>
+        <br>
+        <button class="button is-link is-rounded" @click="postTweet()">Tweet</button>
         
         
     </div>
