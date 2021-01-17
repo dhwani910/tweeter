@@ -3,6 +3,7 @@
         <button class="button is-success is-rounded" @click="follow" v-if="isFollowing == false">Follow</button>
         <button class="button is-success is-rounded" @click="unfollow" v-else-if="isFollowing == true">Unfollow</button>
         <span>follows: {{followAmount}}</span>
+        <following-page></following-page>
 
     </div>
 </template>
@@ -15,8 +16,12 @@
 <script>
 import axios from "axios"
 import cookies from "vue-cookies"
+import FollowingPage from './Following.vue'
 export default {
     name: 'FollowButton',
+    components: {
+        FollowingPage,
+    },
     data(){
         return {
             isFollowing: false,
@@ -88,7 +93,7 @@ export default {
                 }).then((response) => {
                 console.log(response);
                 this.usersFollowing = response.data;
-                this.followAmount = this.followAmount.length;
+                this.followAmount = this.usersFollowing.length;
 
                     let currentUser = cookies.get('userId');
                     for (let i = 0; i < this.usersFollowing.length; i++){
