@@ -1,7 +1,9 @@
 <template>
     <div>
+         <img id="img" src="@/assets/logo.jpg" alt="tweeter logo">
         <h1 id="title">Welcome To Twitter!</h1>
         <p>This is the best place to see what's happening in your world</p>
+       
         
          <tweet-form></tweet-form> 
         <!-- <button @click="getTweets">Refresh Tweets</button> -->
@@ -49,6 +51,7 @@ export default {
         TweetCard,
         SignoutButton,
         CommentPage,
+        
       
        
       
@@ -86,6 +89,9 @@ export default {
 </script>
 
 <style scoped>
+#img{
+     margin-bottom: 1rem;
+}
 #title{
     background-color: skyblue;
 }

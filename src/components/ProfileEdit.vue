@@ -11,7 +11,7 @@
         <input type="text" id="bio-input" v-model="bio">
         <p>birthdate</p>
         <input type="text" id="birthdate-input" v-model="birthdate" placeholder="yyyy-mm-dd"> <br>
-        <button @click="editProfile()"><i class="fas fa-edit"></i>Edit Profile</button>
+        <button @click="editProfile()">Save</button>
 
     </div>
 </template>

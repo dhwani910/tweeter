@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h1 @click="following">Following</h1>
+        <button @click="following">Following</button>
         <div v-if="users.length > 0">
             <div id="following" v-for="user in users" :key="user.userId">
                 <p><span>  Name: </span> {{user.username}}</p>
@@ -29,9 +29,9 @@ export default {
             userId: cookies.get('userId'),
         }
     },
-    mounted(){
-        this.following();
-    },
+    // mounted(){
+    //     this.following();
+    // },
     methods: {
         following(){
             axios.request({
